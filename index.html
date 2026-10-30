@@ -541,37 +541,56 @@
         });
     </script>
     
- <script>
-        // Inicializar Clerk y manejar inicio de sesión
+<script>
+        // Tu Publishable Key limpia
+        const PUBLISHABLE_KEY = "pk_test_dG9waWNhbC1mb3dsLTgwNjguY2xlcmsuYWNjb3VudHMuZGV2JA";
+
         window.addEventListener('load', async function () {
-            await window.Clerk.load();
+            try {
+                // Verificar e inicializar el objeto global Clerk
+                if (window.Clerk) {
+                    // Cargar la instancia de Clerk
+                    await window.Clerk.load();
 
-            const userButtonDiv = document.getElementById('user-button');
-            const authLinksDiv = document.getElementById('auth-links');
+                    const userButtonDiv = document.getElementById('user-button');
+                    const authLinksDiv = document.getElementById('auth-links');
 
-            if (window.Clerk.user) {
-                // Usuario autenticado
-                window.Clerk.mountUserButton(userButtonDiv);
-                if (authLinksDiv) authLinksDiv.style.display = 'none';
-            } else {
-                // Usuario no autenticado: Genera el botón
-                if (authLinksDiv) {
-                    authLinksDiv.innerHTML = `
-                        <button id="login-btn" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)]">
-                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                            </svg>
-                            Iniciar Sesión
-                        </button>
-                    `;
+                    if (window.Clerk.user) {
+                        // Usuario ya logueado: Montar el avatar de perfil
+                        if (userButtonDiv) window.Clerk.mountUserButton(userButtonDiv);
+                        if (authLinksDiv) authLinksDiv.style.display = 'none';
+                    } else {
+                        // Usuario no logueado: Renderizar botón e instanciar evento
+                        if (authLinksDiv) {
+                            authLinksDiv.innerHTML = `
+                                <button id="btn-clerk-login" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)] cursor-pointer">
+                                    <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    Iniciar Sesión
+                                </button>
+                            `;
 
-                    // Listener explícito para abrir la modal de inicio de sesión
-                    document.getElementById('login-btn').addEventListener('click', () => {
-                        window.Clerk.openSignIn();
-                    });
+                            // Asignar el listener de clic para abrir el Sign In
+                            document.getElementById('btn-clerk-login').addEventListener('click', () => {
+                                window.Clerk.openSignIn();
+                            });
+                        }
+                    }
                 }
+            } catch (err) {
+                console.error("Error inicializando Clerk:", err);
             }
         });
+
+        // Menú hamburguesa para celulares
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
     </script>
     
 </body>
