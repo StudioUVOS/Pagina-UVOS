@@ -543,10 +543,10 @@
             const authLinksDiv = document.getElementById('auth-links');
             const userButtonDiv = document.getElementById('user-button');
 
-            // 1. Dibujar el botón en pantalla desde el primer instante
+            // 1. Insertar el botón en la esquina superior derecha inmediatamente
             if (authLinksDiv) {
                 authLinksDiv.innerHTML = `
-                    <button id="btn-clerk-login" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)] cursor-pointer">
+                    <button id="btn-login-uvos" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)] cursor-pointer">
                         <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
@@ -555,39 +555,42 @@
                 `;
             }
 
-            // 2. Función para abrir la ventana de Clerk cuando esté listo
-            async function openClerkSignIn() {
-                if (window.Clerk) {
-                    if (!window.Clerk.loaded) {
-                        await window.Clerk.load();
-                    }
-                    window.Clerk.openSignIn();
-                } else {
-                    alert("El sistema de inicio de sesión aún se está cargando. Intenta de nuevo en unos segundos.");
-                }
-            }
-
-            // 3. Asignar el clic al botón dibujado
-            const loginBtn = document.getElementById('btn-clerk-login');
-            if (loginBtn) {
-                loginBtn.addEventListener('click', openClerkSignIn);
-            }
-
-            // 4. Verificar si el estudiante ya inició sesión previamente
+            // 2. Inicializar Clerk de forma segura
             try {
                 if (window.Clerk) {
                     await window.Clerk.load();
+
+                    // Si ya hay una sesión activa, mostrar el avatar y ocultar el botón
                     if (window.Clerk.user) {
                         if (userButtonDiv) window.Clerk.mountUserButton(userButtonDiv);
                         if (authLinksDiv) authLinksDiv.style.display = 'none';
                     }
                 }
-            } catch (err) {
-                console.error("Error comprobando sesión de Clerk:", err);
+            } catch (error) {
+                console.error("Error al cargar Clerk:", error);
+            }
+
+            // 3. Vincular el evento de clic al botón (independientemente de si cargó antes o después)
+            const loginBtn = document.getElementById('btn-login-uvos');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', async () => {
+                    try {
+                        if (window.Clerk) {
+                            if (!window.Clerk.loaded) {
+                                await window.Clerk.load();
+                            }
+                            window.Clerk.openSignIn();
+                        } else {
+                            alert("El sistema de autenticación está cargando, por favor espera un segundo.");
+                        }
+                    } catch (err) {
+                        console.error("No se pudo abrir el modal de Clerk:", err);
+                    }
+                });
             }
         });
 
-        // Lógica del menú desplegable móvil
+        // Menú móvil
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileBtn && mobileMenu) {
