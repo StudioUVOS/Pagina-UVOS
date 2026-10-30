@@ -1,35 +1,46 @@
 <!DOCTYPE html>
+<!-- Configuración del documento HTML5 con idioma español y desplazamiento suave (scroll-smooth) para la navegación entre secciones -->
 <html lang="es" class="scroll-smooth">
 <head>
+    <!-- Configuración de codificación de caracteres a UTF-8 (soporte para acentos y caracteres especiales) -->
     <meta charset="UTF-8">
+    <!-- Meta de diseño adaptativo (responsive) para ajustar el renderizado a la pantalla de móviles y tablets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revisión - Desbloquea el verdadero potencial de tus ventanas</title>
-    <!-- Tailwind CSS via CDN -->
+    <!-- Título que se muestra en la pestaña del navegador -->
+    <title>U.V.O.S</title>
+
+    <!-- Importación de la librería Tailwind CSS vía CDN para estilos mediante clases utilitarias -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font -->
+
+    <!-- Conexión previa a los servidores de Google Fonts para optimizar la carga tipográfica -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Carga de la fuente oficial Inter en múltiples grosores (weights de 300 a 900) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Script de extensión de configuración para Tailwind CSS -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    // Extensión de colores personalizados para simular un tema oscuro profesional (Dark Mode)
                     colors: {
                         dark: {
-                            base: '#08080a',
-                            surface: '#111114',
-                            card: '#16161a',
-                            border: '#222226',
-                            hover: '#2a2a30'
+                            base: '#08080a',    // Fondo principal ultra oscuro
+                            surface: '#111114', // Fondo secundario para superficies y secciones
+                            card: '#16161a',    // Fondo para tarjetas contenedoras
+                            border: '#222226',  // Color para bordes sutiles
+                            hover: '#2a2a30'   // Color al pasar el cursor sobre elementos oscuros
                         },
+                        // Colores de verde distintivos del Studio U.V.O.S
                         accent: {
-                            DEFAULT: '#e50914',
-                            bright: '#ff1e27',
-                            dark: '#990007',
-                            glow: 'rgba(229, 9, 20, 0.15)'
+                            DEFAULT: '#40d63a',                     /* Verde base */
+                            bright: '#57f251',                      /* Verde brillante para resaltados y hovers */
+                            dark: '#2c9e27',                        /* Verde oscuro para sombras/estados activos */
+                            glow: 'rgba(64, 214, 58, 0.15)'         /* Transparencia verde para resplandores/glow */
                         }
                     },
+                    // Asignación de la fuente tipográfica Inter como la Sans-serif por defecto
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     }
@@ -38,21 +49,23 @@
         }
     </script>
 
+    <!-- Hojas de estilo CSS personalizadas para efectos visuales avanzados y ajustes del fondo -->
     <style>
-        /* Estilos personalizados y utilidades de fondo */
+        /* Ajustes globales del cuerpo del documento */
         body {
             background-color: #08080a;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Previene el desbordamiento horizontal en móviles */
         }
 
-        /* Efecto de fondo abstracto del Hero (Polígonos oscuros con tinte rojo) */
+        /* Estilo para el fondo decorativo de la sección principal (Hero) */
         .hero-bg {
             position: relative;
             background-color: #08080a;
         }
 
+        /* Pseudoelemento para generar una sombra brillante verde estilizada en la parte superior */
         .hero-bg::before {
             content: '';
             position: absolute;
@@ -63,78 +76,85 @@
             max-width: 1200px;
             height: 600px;
             background: 
-                radial-gradient(circle at 50% 20%, rgba(229, 9, 20, 0.18) 0%, rgba(13, 13, 16, 0) 65%),
+                radial-gradient(circle at 50% 20%, rgba(32, 109, 29, 0.15) 0%, rgba(13, 13, 16, 0) 65%),
                 polygon(50% 0%, 100% 0, 85% 100%, 15% 100%);
-            pointer-events: none;
+            pointer-events: none; /* Evita interferir con los clics del usuario */
             z-index: 0;
         }
 
-        /* Formas geométricas triangulares abstractas */
+        /* Forma triangular decorativa invertida para el acento visual detrás del título */
         .triangle-accent {
             position: absolute;
             width: 0;
             height: 0;
             border-left: 300px solid transparent;
             border-right: 300px solid transparent;
-            border-bottom: 500px solid rgba(180, 0, 10, 0.05);
+            border-bottom: 500px solid rgba(64, 214, 58, 0.05);
             top: -100px;
             left: 50%;
             transform: translateX(-50%) rotate(180deg);
             pointer-events: none;
         }
 
+        /* Animación y efecto al pasar el cursor (Hover) sobre las tarjetas */
         .card-hover {
             transition: all 0.25s ease-in-out;
         }
 
         .card-hover:hover {
-            border-color: rgba(229, 9, 20, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(229, 9, 20, 0.15);
+            border-color: rgba(64, 214, 58, 0.15); /* Resalta el borde en rojo */
+            transform: translateY(-2px);           /* Eleva la tarjeta 2px */
+            box-shadow: 0 10px 30px -10px rgba(16, 58, 15, 0.15); /* Añade sombra roja */
         }
 
-        /* Modal Blur */
+        /* Filtro CSS para desenfoque de fondo detrás de la barra de navegación y ventanas */
         .backdrop-blur-custom {
             backdrop-filter: blur(12px);
         }
     </style>
+    <!-- Icono de la pagina) -->
+    <link rel="shortcut icon" type="image/x-icon" href="uvos.ico">
 </head>
 <body class="antialiased selection:bg-accent selection:text-white">
 
-    <!-- ================= 1. BARRA DE NAVEGACIÓN ================= -->
+    <!-- ================= 1. BARRA DE NAVEGACIÓN (HEADER FIJO) ================= -->
+    <!-- Contenedor superior fijo (sticky) con desenfoque de fondo al hacer scroll -->
     <header class="sticky top-0 z-50 w-full border-b border-dark-border bg-dark-base/80 backdrop-blur-custom">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             
-            <!-- Logotipo + Nombre -->
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-black text-xl tracking-tighter shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform">
-                    R
-                </div>
+            <!-- Bloque 1: Logotipo y Nombre de la Marca -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                 <!-- Tu imagen de logo -->
+                <img src="icono.png" 
+                    alt="Logo Studio" 
+                    class="w-8 h-8 rounded-lg object-contain group-hover:scale-105 transition-transform">
                 <span class="font-bold text-lg tracking-tight text-white group-hover:text-gray-200 transition-colors">
-                    Revisión
+                    U.V.O.S
                 </span>
             </a>
 
-            <!-- Enlaces centrales de escritorio -->
+            <!-- Bloque 2: Menú de Navegación para Pantallas Grandes (Escritorio) -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
                 <a href="#inicio" class="text-white border-b-2 border-accent pb-0.5 font-semibold">Inicio</a>
-                <a href="#descargar" class="hover:text-white transition-colors">Descargar</a>
-                <a href="#documentacion" class="hover:text-white transition-colors">Documentación</a>
-                <a href="#acerca-de" class="hover:text-white transition-colors">Acerca de</a>
-                <a href="#donar" class="hover:text-white transition-colors">Donar</a>
+                <a href="#Tutoriales" class="hover:text-white transition-colors">Tutoriales</a>
+                <a href="#Proyecto" class="hover:text-white transition-colors">Proyecto</a>
+                <a href="#Actividades" class="hover:text-white transition-colors">Actividades</a>
+                <a href="#Archivos" class="hover:text-white transition-colors">Archivos</a>
             </nav>
 
-            <!-- Icono GitHub + Menú Móvil -->
+            <!-- Bloque 3: Acceso a Inicio de sección -->
             <div class="flex items-center gap-4">
+                <!-- Enlace directo al repositorio oficial en GitHub -->
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
                    class="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-dark-surface transition-colors"
                    aria-label="GitHub Repository">
+                    <!-- Icono SVG oficial de GitHub -->
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
                     </svg>
                 </a>
 
-                <!-- Botón Menú Hamburguesa Móvil -->
+                <!-- Botón tipo Hamburguesa que activa la vista del menú desplegable en celulares  -->
                 <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -143,7 +163,7 @@
             </div>
         </div>
 
-        <!-- Menú Desplegable Móvil -->
+        <!-- Menú Desplegable Oculto por defecto para dispositivos móviles -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-dark-border bg-dark-surface px-4 pt-2 pb-4 space-y-2">
             <a href="#inicio" class="block py-2 text-white font-medium">Inicio</a>
             <a href="#descargar" class="block py-2 text-gray-300 hover:text-white">Descargar</a>
@@ -153,333 +173,318 @@
         </div>
     </header>
 
-    <!-- ================= 2. PRESENTACIÓN PRINCIPAL (HERO) ================= -->
+    <!-- ================= 2. SECCIÓN PRINCIPAL / HERO ================= -->
     <section id="inicio" class="hero-bg relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Renderizado de la forma geométrica abstracta -->
         <div class="triangle-accent"></div>
         
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            
-            <!-- Anuncio Pill -->
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-dark-card border border-dark-border text-xs font-medium text-gray-300 mb-8 hover:border-accent/40 transition-colors cursor-pointer" onclick="showModal('Noticia de actualización', 'La inyección ISO de ReviOS v24.08 ya está totalmente disponible con compatibilidad extendida.')">
-                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                <span>📌 Inyección ISO ya disponible!</span>
-            </div>
 
-            <!-- Título Principal con Resaltado Rojo -->
+                <!-- Logo Principal -->
+        <div class="max-w-[225px] mx-auto mb-8 p-3 rounded-3xl bg-gradient-to-b from-dark-card to-black border border-accent/40 shadow-[0_0_25px_rgba(64,214,58,0.15)] backdrop-blur-sm flex items-center justify-center overflow-hidden group hover:border-accent hover:shadow-[0_0_35px_rgba(64,214,58,0.3)] transition-all duration-300">
+            <img src="LogoUVOS.png" 
+                alt="Logo de U.V.O.S" 
+                class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300">
+        </div>
+
+            <!-- Titular del lema -->
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6 leading-none sm:leading-tight">
-                Desbloquea el <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-bright via-accent to-red-600">verdadero potencial</span> de tus ventanas.
+                Satisfacer las <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-bright via-accent to-green-600">nececidades</span> de un niño <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-bright via-accent to-green-600">ambicioso</span>
             </h1>
 
-            <!-- Subtítulo -->
-            <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-                Cada minuto que esperas, pierdes rendimiento, privacidad y control. ReviOS te devuelve el sistema que mereces: rápido, privado y estable.
-            </p>
-
-            <!-- Botones CTA -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <button onclick="showModal('Descargar ReviOS', 'Selecciona tu versión para iniciar la descarga oficial.')" 
-                        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-all shadow-lg hover:shadow-white/10">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                    </svg>
-                    <span>Descárgalo ahora</span>
-                </button>
-                
+            <!-- Botones de Llamada a la Acción (Información) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">    
+                <!-- Botón secundario para scroll a la sección descriptiva -->
                 <a href="#acerca-de" 
                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-dark-card border border-dark-border text-white font-medium text-sm hover:bg-dark-hover hover:border-gray-700 transition-all">
-                    <span>Más información</span>
+                    <span>PROXIMAMENTE</span>
                     <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                     </svg>
                 </a>
             </div>
 
-            <!-- 3 Indicadores de Métricas -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-dark-border/60 max-w-3xl mx-auto">
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Más de 500.000</div>
-                    <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">Descargas</div>
-                </div>
-                <div class="p-2 sm:border-x sm:border-dark-border/60">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">1 Gol</div>
-                    <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">La mejor experiencia</div>
-                </div>
-                <div class="p-2">
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">100%</div>
-                    <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">Código abierto</div>
-                </div>
-            </div>
-
-        </div>
     </section>
 
-    <!-- ================= 3. SECCIÓN DE BENEFICIOS ================= -->
-    <section id="descargar" class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-base border-t border-dark-border/40">
-        <div class="max-w-7xl mx-auto">
-            
-            <!-- Encabezado de Sección -->
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4 tracking-tight">
-                    ¿Por qué elegir ReviOS?
-                </h2>
-                <p class="text-gray-400 text-sm sm:text-base">
-                    Experimenta Windows como nunca antes con nuestras optimizaciones cuidadosamente diseñadas.
-                </p>
-            </div>
-
-            <!-- Grilla de 8 Tarjetas (4 cols escritorio / 2 tablet / 1 móvil) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                
-                <!-- Tarjeta 1 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Mejora del rendimiento</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Disfruta de tiempos de arranque más rápidos, latencia reducida y uso optimizado de recursos para juegos y productividad.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 2 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Privacidad mejorada</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Toma el control de tus datos desactivando la telemetría y los servicios innecesarios que comprometen tu privacidad.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 3 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Eliminación de software innecesario</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Elimina automáticamente el software y los servicios preinstalados innecesarios que ralentizan el sistema.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 4 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Listo para jugar</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Ajustes especializados para jugadores, que incluyen menor latencia de entrada, mayor velocidad de fotogramas y mejor asignación de recursos.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 5 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Estabilidad</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Disfruta de una experiencia Windows fiable gracias a las optimizaciones que mantienen la estabilidad y la compatibilidad del sistema.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 6 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Fácil instalación</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        El proceso de configuración es sencillo: AME Wizard le guía paso a paso sin complicaciones.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 7 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Herramienta de revisión</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Adaptado a sus necesidades con funciones opcionales y configuración flexible de componentes.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 8 -->
-                <div class="p-6 rounded-xl bg-dark-card border border-dark-border card-hover">
-                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2">Impulsado por la comunidad</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Creado por entusiastas para entusiastas, con mejoras continuas basadas en los comentarios de los usuarios.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= 4. SECCIÓN "QUIÉNES SOMOS" ================= -->
+     <!-- ================= 3 Que es U.V.O.S ================= -->
     <section id="acerca-de" class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-surface border-t border-dark-border">
         <div class="max-w-7xl mx-auto">
             
-            <!-- Título de Sección -->
+            <!-- Encabezado de la Sección -->
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4 tracking-tight">
-                    Quiénes somos
+                    ¿Qué es U.V.O.S?
                 </h2>
                 <p class="text-gray-400 text-sm sm:text-base">
-                    Una comunidad global de entusiastas de la tecnología que comparten conocimientos libremente.
+                    Un Studio encargo de producir:
                 </p>
             </div>
 
-            <!-- 3 Tarjetas de Filosofía -->
+            <!--  Diseño de los Bloques con el Producto -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 
                 <div class="p-8 rounded-xl bg-dark-base border border-dark-border">
                     <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-5">
+                        <!-- Icono de Cuaderno -->
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Comunidad global</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Novela</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Entusiastas de la tecnología de todo el mundo, unidos por la pasión por la innovación y el rendimiento puro.
+                        Es una obra literaria extensa escrita en prosa que narra una historia e integra los diálogos de sus personajes mediante el uso de guiones.
                     </p>
                 </div>
+
+            <div class="p-8 rounded-xl bg-dark-base border border-dark-border">
+                <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-5">
+                    <!-- Icono de Panel-->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/>
+                        <path stroke-linecap="round" stroke-width="2" d="M12 3v18M12 11h9M3 14h9"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Manga</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    Son paneles gráficos (en formato digital o físico) compuesto por viñetas y texto que narra una historia mediante dibujos, caracterizada tradicionalmente por su lectura de derecha a izquierda y su estilo visual.
+                </p>
+            </div>
 
                 <div class="p-8 rounded-xl bg-dark-base border border-dark-border">
                     <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-5">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V11a2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Sin fronteras</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Anime</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Creemos en un mundo donde el conocimiento fluye libremente, trascendiendo las fronteras geográficas.
+                        Es un producto audiovisual animado (tradicional o digital) que adapta historias de mangas o novelas mediante movimiento, color y sonido, combinando dibujos y doblaje para narrar una trama.
                     </p>
                 </div>
 
-                <div class="p-8 rounded-xl bg-dark-base border border-dark-border">
+                <!-- Producto Novela Ligera -->
+                <div class="p-8 rounded-xl bg-dark-base border border-dark-border md:col-start-2">
                     <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-5">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                        </svg>
+                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                       </svg>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Código abierto</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Novela Ligera</h3>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Comprometidos con la transparencia y la colaboración, compartimos nuestro trabajo abiertamente para el beneficio de todos.
+                        Es una obra de narrativa breve dividida en capítulos cortos y ágiles, recopilada habitualmente en volúmenes individuales y complementada con ilustraciones de estilo gráfico para enriquecer la historia.
                     </p>
                 </div>
 
             </div>
 
-            <!-- Bloque Horizontal de Misión + Banner Discord -->
-            <div class="p-8 rounded-xl bg-dark-base border border-dark-border text-center max-w-5xl mx-auto">
-                <p class="text-xs sm:text-sm text-gray-300 max-w-3xl mx-auto mb-6 leading-relaxed">
-                    Somos más que desarrolladores; somos una comunidad que cree en el poder del conocimiento compartido. Nuestra misión es hacer que la tecnología sea accesible para todos, derribando barreras e impulsando la innovación. Únete a nosotros en este viaje para transformar el panorama digital.
-                </p>
-                <button onclick="showModal('Comunidad de Discord', 'Redirigiendo a nuestro servidor oficial de Discord con más de 100,000 miembros...')"
-                        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-semibold text-xs hover:bg-gray-200 transition-all shadow-md">
-                    <svg class="w-4 h-4 text-indigo-600 fill-current" viewBox="0 0 24 24">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+    </section>
+
+    <!-- ================= 3. Objetivo ================= -->
+    <section id="acerca-de" class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-surface border-t border-dark-border">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            
+            <!-- Encabezado de la Sección -->
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Objetivo de U.V.O.S
+                </h2>
+            </div>
+
+            <!-- Tarjeta de Objetivo (Ancha y Centrada) -->
+            <div class="w-full max-w-5xl p-8 rounded-xl bg-dark-base border border-dark-border text-center shadow-lg">
+                <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-5 mx-auto">
+                    <!-- Icono de la Tierra -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V11a2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <span>Únete a nuestra comunidad de Discord</span>
-                </button>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Objetivo Principal</h3>
+                <p class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-2xl mx-auto">
+                    Colocar a Venezuela como la número 1 del mundo del entretenimiento, abarcando la Novela, manga y anime.
+                </p>
             </div>
 
         </div>
     </section>
 
-    <!-- ================= 5. PIE DE PÁGINA (FOOTER) ================= -->
+ <!-- ================= 4. Visionarios ================= -->
+<section id="descargar" class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-base border-t border-dark-border/40">
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Encabezado de la Sección -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
+                ¿Cómo se logrará este objetivo?
+            </h2>
+            <p class="text-gray-200 font-semibold text-base sm:text-lg tracking-wide uppercase mb-4">
+                A través de los Visionarios
+            </p>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+                Los Visionarios son personas ambiciosas, analíticas y críticas, impulsadas por una inconformidad constructiva. Cuentan con la capacidad estratégica para liderar, administrar y optimizar cualquier proceso clave dentro del estudio.
+            </p>
+        </div>
+
+        <!-- Subtítulo de Roles -->
+        <div class="text-center mb-8">
+            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                Roles clave:
+            </h3>
+        </div>
+
+        <!-- Rejilla de 4 Tarjetas Verticales -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- RECTÁNGULO 1: Mangaka -->
+            <div class="rounded-xl bg-dark-card border border-dark-border overflow-hidden card-hover flex flex-col justify-between text-center p-6 pb-5">
+                <div>
+                    <!-- Contenedor del Icono Centrado -->
+                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4 mx-auto">
+                        <!-- Icono de Lápiz -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Mangaka</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Encargado de gestionar y supervisar la producción de mangas y novelas, además posee un talento extraordinario en el dibujo, puede optimizar cualquier proceso y resolver cualquier problema.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RECTÁNGULO 2: Investigador -->
+            <div class="rounded-xl bg-dark-card border border-dark-border overflow-hidden card-hover flex flex-col justify-between text-center p-6 pb-5">
+                <div>
+                    <!-- Contenedor del Icono Centrado -->
+                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4 mx-auto">
+                        <!-- Icono de Lupa -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Investigador</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Encargado de gestionar y supervisar la investigación de los temas, con el fin de tener historias ricas en lore, además es una persona capaz de narrar grandes historias y saber expresarlas de manera correcta, también es una persona con muy buena memoria.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RECTÁNGULO 3: Animador -->
+            <div class="rounded-xl bg-dark-card border border-dark-border overflow-hidden card-hover flex flex-col justify-between text-center p-6 pb-5">
+                <div>
+                    <!-- Contenedor del Icono Centrado -->
+                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4 mx-auto">
+                        <!-- Icono del Oso -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 8.5a2.5 2.5 0 00-2.5-2.5 8.94 8.94 0 00-9 0A2.5 2.5 0 005 8.5c0 1.25.9 2.3 2.1 2.46a8.97 8.97 0 00-.1 1.04c0 4.4 3.6 8 8 8s8-3.6 8-8c0-.35-.03-.7-.1-1.04A2.5 2.5 0 0019 8.5zM9 13.5h.01M15 13.5h.01M12 16.5a1.5 1.5 0 000-3 1.5 1.5 0 000 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Animador</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Encargado de gestionar y supervisar la producción de animes, es una persona capacitada para optimizar los procesos de animación sin perder calidad.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RECTÁNGULO 4: Marketing -->
+            <div class="rounded-xl bg-dark-card border border-dark-border overflow-hidden card-hover flex flex-col justify-between text-center p-6 pb-5">
+                <div>
+                    <!-- Contenedor del Icono Centrado -->
+                    <div class="w-10 h-10 rounded-lg bg-dark-surface border border-dark-border flex items-center justify-center text-accent mb-4 mx-auto">
+                        <!-- Icono de Megáfono / Difusión -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 013 10c0-2.21 1.791-4 4-4h.84M11 5.882l5.35-2.675A1 1 0 0117 4.102v12.796a1 1 0 01-1.35.932l-4.65-2.325"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Marketing</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Encargado de la publicidad del Studio, además aporta mucha retroalimentación del público.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- ================= 5. PIE DE PÁGINA / FOOTER ================= -->
     <footer id="documentacion" class="bg-dark-base border-t border-dark-border pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             
-            <!-- 4 Columnas del Footer -->
+            <!-- Distribución principal del Footer en 4 Columnas -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
                 
-                <!-- Columna 1: Marca y descripción -->
+                <!-- Columna 1: Marca y Resumen -->
                 <div class="space-y-4">
                     <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 rounded bg-accent flex items-center justify-center text-white font-bold text-sm">
-                            R
-                        </div>
-                        <span class="font-bold text-base text-white">Revisión</span>
+                        <a href="#" class="flex items-center gap-2.5 group">
+                 <!-- Tu imagen de logo -->
+                <img src="icono.png" 
+                    alt="Logo Studio" 
+                    class="w-8 h-8 rounded-lg object-contain group-hover:scale-105 transition-transform">
+                <span class="font-bold text-lg tracking-tight text-white group-hover:text-gray-200 transition-colors">
+                    U.V.O.S
+                </span>
+            </a>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">
-                        Un proyecto de modificación de Windows desarrollado por el equipo de Revision desde 2019.
+                        Un Studio dedicado al mundo del entretenimiento.
                     </p>
                 </div>
 
-                <!-- Columna 2: Proyecto -->
+                <!-- Columna 2: Navegación del Proyecto -->
                 <div>
                     <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Proyecto</h4>
                     <ul class="space-y-2.5 text-xs text-gray-400">
                         <li><a href="#acerca-de" class="hover:text-white transition-colors">Acerca de</a></li>
-                        <li><a href="#descargar" class="hover:text-white transition-colors">Descargar</a></li>
-                        <li><a href="#documentacion" class="hover:text-white transition-colors">Documentación</a></li>
-                        <li><a href="#donar" class="hover:text-white transition-colors">Donar</a></li>
                     </ul>
                 </div>
 
-                <!-- Columna 3: Recursos -->
+                <!-- Columna 3: Contacto -->
                 <div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Recursos</h4>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Contacto</h4>
                     <ul class="space-y-2.5 text-xs text-gray-400">
-                        <li><a href="#documentacion" onclick="showModal('Preguntas frecuentes', 'Consulta la sección de documentación oficial para guías y preguntas frecuentes.')" class="hover:text-white transition-colors">Preguntas frecuentes</a></li>
+                        <a href="https://t.me/+584128957658" target="_blank" class="hover:text-gray-400 transition-colors">Telegram</a>
                     </ul>
                 </div>
 
-                <!-- Columna 4: Comunidad -->
-                <div id="donar">
-                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Comunidad</h4>
+                 <!-- Columna 4: Redes -->
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Redes</h4>
                     <ul class="space-y-2.5 text-xs text-gray-400">
-                        <li><a href="https://github.com" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub</a></li>
-                        <li><a href="#" onclick="showModal('Discord', 'Abriendo servidor oficial...')" class="hover:text-white transition-colors">Discordia</a></li>
+                        <li><a href="https://x.com/StudioUVOS" target="_blank" class="hover:text-gray-400 transition-colors">Twitter</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61591369811408&locale=es_LA" target="_blank" class="hover:text-gray-400 transition-colors">Facebook</a></li>
+                        <li><a href="https://www.youtube.com/@StudioUVOS" target="_blank" class="hover:text-gray-400 transition-colors">Yooutube</a></li>
                     </ul>
                 </div>
 
             </div>
 
-            <!-- Línea Divisoria y Derechos -->
+            <!-- Copyright y Enlaces Legales -->
             <div class="pt-8 border-t border-dark-border/60 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
                 <div>
-                    © 2019 - 2026 | Revisión. Todos los derechos reservados.
+                    © 2026 - 2026 | U.V.O.S. 
                 </div>
                 <div class="flex items-center gap-6">
-                    <a href="#" onclick="showModal('Política de privacidad', 'ReviOS no recopila ni rastrea ningún dato personal de los usuarios.')" class="hover:text-gray-400 transition-colors">política de privacidad</a>
-                    <a href="#" onclick="showModal('Créditos', 'Agradecimientos a todos los desarrolladores de código abierto y contribuyentes del equipo Revision.')" class="hover:text-gray-400 transition-colors">Créditos</a>
+                    <a href="#" onclick="showModal('Política de privacidad', 'Proximamente.')" class="hover:text-gray-400 transition-colors">política de privacidad</a>
+                    <a href="#" onclick="showModal('Créditos', 'Pagina Desarrollada por el Visionario José Flores y Agradecimientos al Profesor Eddy Velazquez.')" class="hover:text-gray-400 transition-colors">Créditos</a>
                 </div>
             </div>
 
         </div>
     </footer>
 
-    <!-- ================= MODAL INTERACTIVO GENERAL ================= -->
+    <!-- ================= 6. COMPONENTE MODAL INTERACTIVO ================= -->
+    <!-- Fondo oscuro flotante de cobertura completa (fixed inset-0) con desenfoque para bloquear la pantalla -->
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
+        <!-- Caja del Modal en el centro con animación de escalado -->
         <div class="bg-dark-card border border-dark-border rounded-xl p-6 max-w-md w-full shadow-2xl transform scale-95 transition-transform duration-200" id="modal-box">
+            <!-- Título inyectado dinámicamente mediante JS -->
             <h3 id="modal-title" class="text-lg font-bold text-white mb-2"></h3>
+            <!-- Descripción inyectada dinámicamente mediante JS -->
             <p id="modal-desc" class="text-sm text-gray-300 mb-6 leading-relaxed"></p>
             <div class="flex justify-end">
+                <!-- Botón para cerrar la ventana emergente -->
                 <button onclick="closeModal()" class="px-5 py-2 rounded-lg bg-accent text-white text-xs font-semibold hover:bg-accent-bright transition-colors">
                     Entendido
                 </button>
@@ -487,37 +492,49 @@
         </div>
     </div>
 
-    <!-- Script Vanilla JS para Interactividad -->
+    <!-- ================= 7. LÓGICA JAVASCRIPT VANILLA ================= -->
     <script>
-        // Menú Móvil Toggle
+        // 1. Control de navegación movil
+        // Selección de elementos DOM para el menú desplegable en celulares
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
+        // Alterna la presencia de la clase 'hidden' para ocultar/mostrar el menú al hacer clic
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
 
-        // Modal de simulación
+        // 2. CONTROL DEL MODAL EMERGENTE REUTILIZABLE
         const modal = document.getElementById('modal');
         const modalBox = document.getElementById('modal-box');
         const modalTitle = document.getElementById('modal-title');
         const modalDesc = document.getElementById('modal-desc');
 
+        /**
+         * Muestra el modal asignando un título y una descripción específicos.
+         * @param {string} title - El título que se mostrará en el encabezado del modal.
+         * @param {string} description - El cuerpo del mensaje dentro del modal.
+         */
         function showModal(title, description) {
             modalTitle.textContent = title;
             modalDesc.textContent = description;
+            // Elimina clases de ocultamiento y activa animaciones
             modal.classList.remove('opacity-0', 'pointer-events-none');
             modalBox.classList.remove('scale-95');
             modalBox.classList.add('scale-100');
         }
 
+        /**
+         * Oculta el modal y reinicia la animación de escalado.
+         */
         function closeModal() {
+            // Asigna clases para desvanecer y bloquear interacción
             modal.classList.add('opacity-0', 'pointer-events-none');
             modalBox.classList.remove('scale-100');
             modalBox.classList.add('scale-95');
         }
 
-        // Clic fuera del modal para cerrar
+        // Cierra el modal de forma intuitiva si el usuario hace clic fuera de la caja contenedora
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
