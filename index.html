@@ -607,6 +607,35 @@
             });
         }
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileBtn && mobileMenu) {
+                // Abrir / Cerrar al tocar el botón de las 3 rayas
+                mobileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Cerrar el menú automáticamente al hacer clic en cualquier opción
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+
+                // Cerrar el menú si se hace clic fuera de él
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
     
 </body>
 </html>
