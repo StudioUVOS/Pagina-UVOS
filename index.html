@@ -125,11 +125,12 @@
 
     <!-- ================= 1. BARRA DE NAVEGACIÓN (HEADER FIJO) ================= -->
     <!-- Contenedor superior fijo (sticky) con desenfoque de fondo al hacer scroll -->
+    <!-- ================= 1. BARRA DE NAVEGACIÓN (HEADER FIJO) ================= -->
     <header class="sticky top-0 z-50 w-full border-b border-dark-border bg-dark-base/80 backdrop-blur-custom">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Bloque 1: Logotipo y Nombre de la Marca -->
-                <a href="#" class="flex items-center gap-2.5 group">
-                 <!-- Tu imagen de logo -->
+            
+            <!-- Bloque 1: Logotipo y Nombre (Izquierda) -->
+            <a href="#" class="flex items-center gap-2.5 group shrink-0">
                 <img src="Icono.png" 
                     alt="Logo Studio" 
                     class="w-8 h-8 rounded-lg object-contain group-hover:scale-105 transition-transform">
@@ -138,7 +139,7 @@
                 </span>
             </a>
 
-            <!-- Bloque 2: Menú de Navegación para Pantallas Grandes (Escritorio) -->
+            <!-- Bloque 2: Menú de Navegación de 5 Secciones (Centro) -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
                 <a href="#inicio" class="text-white border-b-2 border-accent pb-0.5 font-semibold">Inicio</a>
                 <a href="#Tutoriales" class="hover:text-white transition-colors">Tutoriales</a>
@@ -147,29 +148,29 @@
                 <a href="#Archivos" class="hover:text-white transition-colors">Archivos</a>
             </nav>
 
-         <!-- Bloque 3: Acceso a Inicio de Sesión de Clerk -->
-         <div class="flex items-center gap-4">
-         <!-- Aquí aparece el botón de Iniciar Sesión si no está logueado -->
-         <div id="auth-links"></div>
-         <!-- Aquí aparece la foto de perfil si ya inició sesión -->
-         <div id="user-button"></div>
-         </div>
-                <!-- Botón tipo Hamburguesa que activa la vista del menú desplegable en celulares  -->
+            <!-- Bloque 3: Acceso e Inicio de Sesión de Clerk (Esquina Derecha) -->
+            <div class="flex items-center gap-4 shrink-0">
+                <!-- Contenedores aislados en la extrema derecha -->
+                <div id="auth-links"></div>
+                <div id="user-button"></div>
+
+                <!-- Botón de Menú Móvil -->
                 <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
+
         </div>
 
-        <!-- Menú Desplegable Oculto por defecto para dispositivos móviles -->
+        <!-- Menú Móvil -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-dark-border bg-dark-surface px-4 pt-2 pb-4 space-y-2">
             <a href="#inicio" class="block py-2 text-white font-medium">Inicio</a>
-            <a href="#descargar" class="block py-2 text-gray-300 hover:text-white">Descargar</a>
-            <a href="#documentacion" class="block py-2 text-gray-300 hover:text-white">Documentación</a>
-            <a href="#acerca-de" class="block py-2 text-gray-300 hover:text-white">Acerca de</a>
-            <a href="#donar" class="block py-2 text-gray-300 hover:text-white">Donar</a>
+            <a href="#Tutoriales" class="block py-2 text-gray-300 hover:text-white">Tutoriales</a>
+            <a href="#Proyecto" class="block py-2 text-gray-300 hover:text-white">Proyecto</a>
+            <a href="#Actividades" class="block py-2 text-gray-300 hover:text-white">Actividades</a>
+            <a href="#Archivos" class="block py-2 text-gray-300 hover:text-white">Archivos</a>
         </div>
     </header>
 
@@ -539,32 +540,39 @@
             if (e.target === modal) closeModal();
         });
     </script>
-    <script>
-  window.addEventListener('load', async function () {
-    await window.Clerk.load();
+    
+ <script>
+        // Inicializar Clerk y manejar inicio de sesión
+        window.addEventListener('load', async function () {
+            await window.Clerk.load();
 
-    const userButtonDiv = document.getElementById('user-button');
-    const authLinksDiv = document.getElementById('auth-links');
+            const userButtonDiv = document.getElementById('user-button');
+            const authLinksDiv = document.getElementById('auth-links');
 
-    if (window.Clerk.user) {
-      // Si ya inició sesión, muestra su botón de perfil
-      window.Clerk.mountUserButton(userButtonDiv);
-      if (authLinksDiv) authLinksDiv.style.display = 'none';
-    } else {
-      // Si no ha iniciado sesión, muestra tu botón personalizado de U.V.O.S
-      if (authLinksDiv) {
-        authLinksDiv.innerHTML = `
-          <button onclick="window.Clerk.openSignIn()" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)]">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-            Iniciar Sesión
-          </button>
-        `;
-      }
-    }
-  });
-</script>
+            if (window.Clerk.user) {
+                // Usuario autenticado
+                window.Clerk.mountUserButton(userButtonDiv);
+                if (authLinksDiv) authLinksDiv.style.display = 'none';
+            } else {
+                // Usuario no autenticado: Genera el botón
+                if (authLinksDiv) {
+                    authLinksDiv.innerHTML = `
+                        <button id="login-btn" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-dark-card border border-accent/40 rounded-lg hover:border-accent hover:bg-accent/10 transition-all shadow-[0_0_15px_rgba(64,214,58,0.1)]">
+                            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            Iniciar Sesión
+                        </button>
+                    `;
+
+                    // Listener explícito para abrir la modal de inicio de sesión
+                    document.getElementById('login-btn').addEventListener('click', () => {
+                        window.Clerk.openSignIn();
+                    });
+                }
+            }
+        });
+    </script>
     
 </body>
 </html>
